@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
 
 import Query from './components/Query'
+
+import Album from './components/Album'
 
 class App extends Component {
   render() {
@@ -14,10 +17,15 @@ class App extends Component {
         </div>
         <div className="App-intro">
           <Query />
+          <Album />
         </div>
       </div>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state){
+    return { photos: state.photos }
+}
+
+export default connect(mapStateToProps)(App);

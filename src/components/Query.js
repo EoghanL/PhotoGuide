@@ -9,25 +9,22 @@ class Query extends Component{
     super(props)
     this.firstClick = this.firstClick.bind(this)
   }
-  firstClick(){
-    this.props.queryFlickr();
+  firstClick(e){
+    var input = document.getElementById('searchQuery').value;
+    this.props.queryFlickr(input);
   }
   render(){
     return(
       <div>
-        <input type="text" placeholder="Search"></input>
+        <input id="searchQuery" type="text" placeholder="Search"></input>
         <button type="submit" onClick={this.firstClick}>Submit</button>
       </div>
     )
   }
 }
 
-function mapStateToProps(state){
-    return { photos: state.photos }
-}
-
 function mapDispatchToProps(dispatch){
   return bindActionCreators({ queryFlickr: queryFlickr}, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Query);
+export default connect(null, mapDispatchToProps)(Query);

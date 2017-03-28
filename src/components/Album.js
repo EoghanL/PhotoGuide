@@ -1,27 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+//import { bindActionCreators } from 'redux';
 
 class Album extends Component{
-  constructor(props){
-
-  }
   render(){
     return(
       <div>
-        <input type="text" placeholder="Search"></input>
-        <button type="submit" onClick={this.firstClick}>Submit</button>
+        { this.props.album }
       </div>
     )
   }
 }
-
 function mapStateToProps(state){
-    return { photos: state.photos }
+  return { album: state.album }
 }
+// function mapDispatchToProps(dispatch){
+//   return bindActionCreators({ formatPhotos: formatPhotos}, dispatch)
+// }
 
-function mapDispatchToProps(dispatch){
-  return bindActionCreators({ queryFlickr: queryFlickr}, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Album);
+export default connect(mapStateToProps)(Album);
