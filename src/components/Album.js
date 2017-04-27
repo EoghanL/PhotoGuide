@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import { bindActionCreators } from 'redux';
+
 
 class Album extends Component{
   render(){
@@ -14,8 +14,6 @@ class Album extends Component{
 function mapStateToProps(state){
   return { album: state.album }
 }
-// function mapDispatchToProps(dispatch){
-//   return bindActionCreators({ formatPhotos: formatPhotos}, dispatch)
-// }
+
 
 export default connect(mapStateToProps)(Album);

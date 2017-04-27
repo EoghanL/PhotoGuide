@@ -7,6 +7,8 @@ import Query from './components/Query'
 
 import Album from './components/Album'
 
+import Map from './components/Map'
+
 class App extends Component {
   render() {
     return (

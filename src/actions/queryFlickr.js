@@ -5,19 +5,20 @@ import $ from 'jquery'
 import Photo from '../components/Photo'
 
 function formatPhotos(photos){
-  let photoAlbum = photos.map(function(img) {
+  let photoAlbum = photos.slice(0, 25).map(function(img) {
     let imgUrl = `https://farm${img.farm}.staticflickr.com/${img.server}/${img.id}_${img.secret}.jpg`
-    return <Photo key={img.id} url={imgUrl} />
+    return <Photo key={img.id} url={imgUrl} geoId={img.id}/>
   })
   return photoAlbum
 }
 
 function formatUrl(tags){
   let root="https://api.flickr.com/services/rest/?&method=flickr.photos.search"
-  let staticTags = "&format=json&has_geo=1&accuracy=14&sort=interestingness-desc"
+  let staticTags = "&format=json&has_geo=1&accuracy=11&sort=interestingness-desc"
   let dynamicTags = `&tags=${tags}`
   return `${root}${dynamicTags}${staticTags}&api_key=c9a915838f46c00d25dbdbf28614f240`
 }
+
 
 export default function queryFlickr(term){
   return function(dispatch){
@@ -26,7 +27,6 @@ export default function queryFlickr(term){
       method: "GET",
       success: function(data){
         let photos = formatPhotos(JSON.parse(data.slice(14, -1)).photos.photo)
-        debugger
         dispatch({type: "FORMAT_PHOTOS", payload: photos })
       },
       error: function(data){
