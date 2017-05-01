@@ -7,7 +7,7 @@ import Query from './components/Query'
 
 import Album from './components/Album'
 
-import Map from './components/Map'
+import Container from './components/Container'
 
 class App extends Component {
   render() {
@@ -20,6 +20,7 @@ class App extends Component {
         <div className="App-intro">
           <Query />
           <Album />
+          <Container />
         </div>
       </div>
     );
